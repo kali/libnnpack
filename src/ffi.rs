@@ -140,7 +140,7 @@ pub struct nnp_profile {
   pub block_multiplication: f64,
 }
 
-#[link(name = "nnpack_native", kind = "static")]
+//#[link(name = "nnpack_native", kind = "static")]
 extern "C" {
   pub fn pthreadpool_create(threads_count: size_t) -> pthreadpool_t;
   pub fn pthreadpool_get_threads_count(threadpool: pthreadpool_t) -> size_t;

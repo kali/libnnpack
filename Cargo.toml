@@ -11,3 +11,6 @@ path = "src/lib.rs"
 [dependencies]
 lazy_static = "*"
 libc = "*"
+
+[build-dependencies]
+git2 = "*"
