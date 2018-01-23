@@ -80,3 +80,8 @@ impl NnpackPthreadPool {
     self.raw
   }
 }
+
+#[test]
+fn test_initialize() {
+    unsafe { nnp_initialize(); }
+}

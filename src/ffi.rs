@@ -82,6 +82,15 @@ impl nnp_status {
 
 #[derive(Clone, Copy, Debug)]
 #[repr(C)]
+pub enum nnp_activation {
+  /** Identity activation f(x) := x, i.e. no transformation */
+  nnp_activation_identity = 0,
+  /** ReLU activation f(x) := max(0, x) */
+  npp_activation_relu = 1,
+}
+
+#[derive(Clone, Copy, Debug)]
+#[repr(C)]
 pub enum nnp_convolution_algorithm {
   /** Let NNPACK choose the algorithm depending on layer parameters */
   nnp_convolution_algorithm_auto = 0,
@@ -160,6 +169,10 @@ extern "C" {
       kernel: *const f32,
       bias: *const f32,
       output: *mut f32,
+      workspace_buffer: *mut c_void,
+      workspace_size: size_t,
+      activation: nnp_activation,
+      activation_parameters: *mut c_void,
       threadpool: pthreadpool_t,
       profile: *mut nnp_profile,
   ) -> nnp_status;
@@ -174,6 +187,10 @@ extern "C" {
       grad_output: *const f32,
       kernel: *const f32,
       grad_input: *mut f32,
+      workspace_buffer: *mut c_void,
+      workspace_size: size_t,
+      activation: nnp_activation,
+      activation_parameters: *mut c_void,
       threadpool: pthreadpool_t,
       profile: *mut nnp_profile,
   ) -> nnp_status;
@@ -188,6 +205,10 @@ extern "C" {
       input: *const f32,
       grad_output: *const f32,
       grad_kernel: *mut f32,
+      workspace_buffer: *mut c_void,
+      workspace_size: size_t,
+      activation: nnp_activation,
+      activation_parameters: *mut c_void,
       threadpool: pthreadpool_t,
       profile: *mut nnp_profile,
   ) -> nnp_status;
@@ -204,6 +225,10 @@ extern "C" {
       kernel: *const f32,
       bias: *const f32,
       output: *mut f32,
+      workspace_buffer: *mut c_void,
+      workspace_size: size_t,
+      activation: nnp_activation,
+      activation_parameters: *mut c_void,
       threadpool: pthreadpool_t,
       profile: *mut nnp_profile,
   ) -> nnp_status;
