@@ -34,7 +34,7 @@ fn main() {
       .status().unwrap().success());
 
   let target_arch = env::var("CARGO_CFG_TARGET_ARCH").unwrap();
-  if target_arch == "i686" || target_arch == "x86-64" {
+  if target_arch == "i686" || target_arch == "x86_64" {
       // compile cpuinfo
       let cpuinfo_path = out_dir.join("cpuinfo");
       let url = "https://github.com/Maratyszcza/cpuinfo";
